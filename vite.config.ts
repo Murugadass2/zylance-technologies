@@ -16,11 +16,18 @@
 //     server: { entry: "server" },
 //   },
 // });
-import { defineConfig } from 'vite'
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  plugins: [
-    tanstackStart(),
-  ],
-})
+  nitro: {
+    preset: "vercel",
+    output: {
+      dir: ".vercel/output",
+      serverDir: ".vercel/output/functions/__server.func",
+      publicDir: ".vercel/output/static",
+    },
+  },
+  tanstackStart: {
+    server: { entry: "server" },
+  },
+});
